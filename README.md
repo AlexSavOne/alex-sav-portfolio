@@ -1,12 +1,40 @@
-# React + Vite
+# Alex Sav Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Это проект-портфолио для демонстрации моих навыков и проектов в области фронтенд-разработки. Он включает в себя разделы о мне, моих проектах и контактной информации. Портфолио разработано с использованием **React**, **TypeScript**, **Redux**, **Material UI**, и других современных технологий.
 
-Currently, two official plugins are available:
+## Стек технологий
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **React** - для создания компоненетного интерфейса
+- **TypeScript** - для типизации
+- **Redux** - для управления состоянием
+- **Material UI** - для удобного UI компонентов
+- **Vite** - для быстрой сборки и разработки
+- **React Router** - для маршрутизации
+- **Git** - для управления версиями
 
-## Expanding the ESLint configuration
+## Функционал
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+На данный момент портфолио включает:
+
+- Главную страницу с приветствием и ссылкой на проекты.
+- Страницу с информацией обо мне.
+- Страницу с проектами, где представлены различные проекты, над которыми я работал.
+- Страницу с контактной информацией (email и Telegram).
+
+## Структура проекта
+
+- **`src/`** - основной код проекта
+  - **`components/`** - переиспользуемые компоненты (HeroSection, AboutSection, ContactSection и другие)
+  - **`pages/`** - страницы (Home, About, Projects, Contact)
+  - **`styles/`** - стили
+  - **`routes/`** - маршруты
+- **`vite.config.js`** - конфигурация для Vite
+- **`tsconfig.json`** - конфигурация TypeScript
+
+## Примечания
+
+На данный момент проект находится в процессе разработки. Многие страницы и функции ещё в разработке. Это минимальный шаблон, который будет дополняться новыми функциями и улучшениями.
+
+## Контакты
+
+Вы можете связаться со мной по электронной почте: [alexsavone@yandex.ru](mailto:alexsavone@yandex.ru) или через Telegram: [@alex_sav_one](https://t.me/alex_sav_one).
