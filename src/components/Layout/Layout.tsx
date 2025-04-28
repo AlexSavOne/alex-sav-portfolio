@@ -40,7 +40,14 @@ export default function Layout() {
     )), [isMobile, location.pathname]);
 
   return (
-    <>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        minHeight: "100vh",
+        height: "100%",
+      }}
+    >
       <AppBar position="sticky">
         <Toolbar>
           <Typography variant="h6" sx={{ flexGrow: 1 }}>
@@ -59,14 +66,30 @@ export default function Layout() {
           {navLinks}
         </Toolbar>
       </AppBar>
-      <Box component="main" sx={{ mt: 2 }}>
+      <Box 
+        component="main" 
+        sx={{ 
+          flex: 1,
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
         <Outlet />
       </Box>
-      <Box component="footer" sx={{ p: 2, textAlign: "center", mt: 4 }}>
-        <Typography variant="body2" color="text.secondary">
+      <Box
+        component="footer"
+        sx={{
+          py: 3,
+          px: 2,
+          backgroundColor: "background.paper",
+          borderTop: 1,
+          borderColor: "divider",
+        }}
+      >
+        <Typography variant="body2" color="text.secondary" align="center">
           © {new Date().getFullYear()} alex-sav-portfolio
         </Typography>
       </Box>
-    </>
+    </Box>
   );
 }
