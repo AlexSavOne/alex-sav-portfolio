@@ -2,6 +2,7 @@
 import { createTheme, ThemeOptions } from "@mui/material/styles";
 import { grey } from "@mui/material/colors";
 import React from "react";
+import { ColorModeContextType } from "../types/theme.types";
 
 const getDesignTokens = (mode: "light" | "dark"): ThemeOptions => ({
   palette: {
@@ -21,7 +22,7 @@ const getDesignTokens = (mode: "light" | "dark"): ThemeOptions => ({
   typography: { fontFamily: "Roboto, sans-serif" },
 });
 
-export const ColorModeContext = React.createContext({
+export const ColorModeContext = React.createContext<ColorModeContextType>({
   toggleColorMode: () => {},
 });
 

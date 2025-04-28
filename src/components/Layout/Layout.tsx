@@ -5,17 +5,18 @@ import {
   Box,
   Toolbar,
   Typography,
-  Button,
   IconButton,
   useMediaQuery,
   useTheme,
 } from "@mui/material";
-import { NavLink, Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
 import { ColorModeContext } from "../../styles/theme";
+import { NavItem } from "../Navigation/NavItem";
+import { NavItem as NavItemType } from "../../types/navigation.types";
 
-const navItems = [
+const navItems: NavItemType[] = [
   { label: "Home", path: "/" },
   { label: "About", path: "/about" },
   { label: "Projects", path: "/projects" },
@@ -26,22 +27,17 @@ export default function Layout() {
   const theme = useTheme();
   const colorMode = useContext(ColorModeContext);
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const location = useLocation();
 
   const navLinks = useMemo(() => 
     navItems.map((item) => (
-      <NavLink
+      <NavItem
         key={item.path}
-        to={item.path}
-        style={({ isActive }) => ({
-          fontWeight: isActive ? "bold" : "normal",
-          textDecoration: isActive ? "underline" : "none",
-          color: "inherit",
-          marginLeft: isMobile ? 0 : 16,
-        })}
-      >
-        <Button color="inherit">{item.label}</Button>
-      </NavLink>
-    )), [isMobile]);
+        item={item}
+        isMobile={isMobile}
+        isActive={location.pathname === item.path}
+      />
+    )), [isMobile, location.pathname]);
 
   return (
     <>
