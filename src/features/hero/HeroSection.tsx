@@ -29,7 +29,6 @@ export default function HeroSection({
         px: 2,
         backgroundColor: "background.default",
         borderRadius: 2,
-        boxShadow: 3,
         backgroundSize: "cover",
         backgroundPosition: "center",
         ...(backgroundImage && { backgroundImage: `url(${backgroundImage})` }),
@@ -56,8 +55,6 @@ export default function HeroSection({
         sx={{
           mt: 4,
           textTransform: "none",
-          boxShadow: 2,
-          "&:hover": { boxShadow: 6 },
         }}
         aria-label={buttonText}
       >

@@ -12,11 +12,19 @@ export default function Projects() {
         flex: 1,
         display: "flex",
         flexDirection: "column",
-        py: { xs: 4, sm: 6, md: 8 },
-        pb: { xs: 12, sm: 14, md: 16 }, // Увеличиваем нижний отступ для футера
+        minHeight: 0,
+        overflow: "auto",
       }}
     >
-      <Container sx={containerStyles}>
+      <Container 
+        sx={{ 
+          ...containerStyles,
+          flex: 1,
+          display: "flex",
+          flexDirection: "column",
+          minHeight: 0,
+        }}
+      >
         <ProjectsSection />
       </Container>
     </Box>

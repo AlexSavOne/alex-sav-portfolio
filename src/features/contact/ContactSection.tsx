@@ -10,7 +10,6 @@ export default function ContactSection() {
         textAlign: "center",
         backgroundColor: "background.default",
         borderRadius: 2,
-        boxShadow: 3,
       }}
     >
       <Typography variant="h4" gutterBottom fontWeight="bold">
@@ -48,8 +47,6 @@ export default function ContactSection() {
         sx={{
           mt: 4,
           textTransform: "none",
-          boxShadow: 2,
-          "&:hover": { boxShadow: 6 },
         }}
       >
         Написать мне
