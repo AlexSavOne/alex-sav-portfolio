@@ -1,5 +1,5 @@
 // src/features/projects/ProjectsSection.tsx
-import React, { useState } from "react";
+import React from "react";
 import {
   Container,
   Typography,
@@ -12,10 +12,9 @@ import {
 } from "@mui/material";
 import { projects } from "../../constants/projects.data";
 import { Project } from "../../types/project.types";
+import { useImageCache } from "../../hooks/useImageCache";
 
 export default function ProjectsSection() {
-  const [loaded, setLoaded] = useState<Record<string, boolean>>({});
-
   return (
     <Container sx={{ py: 8 }}>
       <Typography variant="h4" gutterBottom align="center" fontWeight="bold">
@@ -36,19 +35,7 @@ export default function ProjectsSection() {
                 bgcolor: "background.paper",
               }}
             >
-              {loaded[project.id] ? (
-                <CardMedia
-                  component="img"
-                  height="200"
-                  image={project.image}
-                  alt={project.title}
-                  onLoad={() =>
-                    setLoaded((prev) => ({ ...prev, [project.id]: true }))
-                  }
-                />
-              ) : (
-                <Skeleton variant="rectangular" width="100%" height={200} />
-              )}
+              <ProjectImage imageUrl={project.image} alt={project.title} />
               <CardContent>
                 <Typography variant="h6" gutterBottom fontWeight="bold">
                   {project.title}
@@ -70,5 +57,26 @@ export default function ProjectsSection() {
         ))}
       </Grid>
     </Container>
+  );
+}
+
+function ProjectImage({ imageUrl, alt }: { imageUrl: string; alt: string }) {
+  const { isLoaded, error } = useImageCache(imageUrl);
+
+  if (error) {
+    return (
+      <Skeleton variant="rectangular" width="100%" height={200} />
+    );
+  }
+
+  return isLoaded ? (
+    <CardMedia
+      component="img"
+      height="200"
+      image={imageUrl}
+      alt={alt}
+    />
+  ) : (
+    <Skeleton variant="rectangular" width="100%" height={200} />
   );
 }

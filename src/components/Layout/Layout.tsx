@@ -1,5 +1,5 @@
 // src/components/Layout/Layout.tsx
-import React, { useContext } from "react";
+import React, { useContext, useMemo } from "react";
 import {
   AppBar,
   Box,
@@ -27,6 +27,22 @@ export default function Layout() {
   const colorMode = useContext(ColorModeContext);
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
+  const navLinks = useMemo(() => 
+    navItems.map((item) => (
+      <NavLink
+        key={item.path}
+        to={item.path}
+        style={({ isActive }) => ({
+          fontWeight: isActive ? "bold" : "normal",
+          textDecoration: isActive ? "underline" : "none",
+          color: "inherit",
+          marginLeft: isMobile ? 0 : 16,
+        })}
+      >
+        <Button color="inherit">{item.label}</Button>
+      </NavLink>
+    )), [isMobile]);
+
   return (
     <>
       <AppBar position="sticky">
@@ -44,20 +60,7 @@ export default function Layout() {
               <Brightness4Icon />
             )}
           </IconButton>
-          {navItems.map((item) => (
-            <NavLink
-              key={item.path}
-              to={item.path}
-              style={({ isActive }) => ({
-                fontWeight: isActive ? "bold" : "normal",
-                textDecoration: isActive ? "underline" : "none",
-                color: "inherit",
-                marginLeft: isMobile ? 0 : 16,
-              })}
-            >
-              <Button color="inherit">{item.label}</Button>
-            </NavLink>
-          ))}
+          {navLinks}
         </Toolbar>
       </AppBar>
       <Box component="main" sx={{ mt: 2 }}>
