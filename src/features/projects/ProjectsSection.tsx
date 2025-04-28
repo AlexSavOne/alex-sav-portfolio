@@ -9,54 +9,66 @@ import {
   CardMedia,
   Link,
   Skeleton,
+  Box,
 } from "@mui/material";
 import { projects } from "../../constants/projects.data";
 import { Project } from "../../types/project.types";
 import { useImageCache } from "../../hooks/useImageCache";
+import {
+  containerStyles,
+  sectionStyles,
+  cardStyles,
+  cardMediaStyles,
+  cardContentStyles,
+  buttonStyles,
+} from "../../styles/commonStyles";
 
 export default function ProjectsSection() {
   return (
-    <Container sx={{ py: 8 }}>
-      <Typography variant="h4" gutterBottom align="center" fontWeight="bold">
-        Интересные проекты
-      </Typography>
-      <Grid container spacing={4}>
-        {projects.map((project: Project) => (
-          <Grid key={project.id} xs={12} sm={6} md={4}>
-            <Card
-              sx={{
-                transition: "transform 0.2s ease, box-shadow 0.2s ease",
-                "&:hover": {
-                  transform: "scale(1.02)",
-                  boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
-                },
-                borderRadius: 2,
-                overflow: "hidden",
-                bgcolor: "background.paper",
-              }}
-            >
-              <ProjectImage imageUrl={project.image} alt={project.title} />
-              <CardContent>
-                <Typography variant="h6" gutterBottom fontWeight="bold">
-                  {project.title}
-                </Typography>
-                <Typography variant="body2" color="text.secondary" paragraph>
-                  {project.description}
-                </Typography>
-                <Link
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener"
-                  underline="hover"
-                >
-                  Смотреть на GitHub
-                </Link>
-              </CardContent>
-            </Card>
-          </Grid>
-        ))}
-      </Grid>
-    </Container>
+    <Box component="section" sx={sectionStyles}>
+      <Container sx={containerStyles}>
+        <Typography
+          variant="h2"
+          gutterBottom
+          align="center"
+          sx={{ mb: { xs: 4, sm: 6 } }}
+        >
+          Интересные проекты
+        </Typography>
+        <Grid container spacing={{ xs: 2, sm: 3, md: 4 }}>
+          {projects.map((project: Project) => (
+            <Grid key={project.id} item xs={12} sm={6} md={4}>
+              <Card sx={cardStyles}>
+                <ProjectImage imageUrl={project.image} alt={project.title} />
+                <CardContent sx={cardContentStyles}>
+                  <Box>
+                    <Typography variant="h6" gutterBottom>
+                      {project.title}
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      color="text.secondary"
+                      sx={{ mb: 2 }}
+                    >
+                      {project.description}
+                    </Typography>
+                  </Box>
+                  <Link
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener"
+                    underline="hover"
+                    sx={buttonStyles}
+                  >
+                    Смотреть на GitHub
+                  </Link>
+                </CardContent>
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
+      </Container>
+    </Box>
   );
 }
 
@@ -64,19 +76,17 @@ function ProjectImage({ imageUrl, alt }: { imageUrl: string; alt: string }) {
   const { isLoaded, error } = useImageCache(imageUrl);
 
   if (error) {
-    return (
-      <Skeleton variant="rectangular" width="100%" height={200} />
-    );
+    return <Skeleton variant="rectangular" sx={cardMediaStyles} />;
   }
 
   return isLoaded ? (
     <CardMedia
       component="img"
-      height="200"
+      sx={cardMediaStyles}
       image={imageUrl}
       alt={alt}
     />
   ) : (
-    <Skeleton variant="rectangular" width="100%" height={200} />
+    <Skeleton variant="rectangular" sx={cardMediaStyles} />
   );
 }
