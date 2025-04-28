@@ -1,15 +1,11 @@
-// src/components/AboutSection/AboutSection.tsx
-
-import { Box, Typography, Container } from "@mui/material";
+// src/features/about/AboutSection.tsx
+import React from "react";
+import { Container, Typography } from "@mui/material";
 
 export default function AboutSection() {
   return (
     <Container sx={{ py: 8 }}>
-      <Typography
-        variant="h4"
-        gutterBottom
-        sx={{ fontWeight: "bold", textAlign: "center" }}
-      >
+      <Typography variant="h4" gutterBottom fontWeight="bold" align="center">
         Обо мне
       </Typography>
       <Typography variant="body1" color="text.secondary" paragraph>

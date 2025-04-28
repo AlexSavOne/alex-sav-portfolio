@@ -1,5 +1,4 @@
-// src/components/Сontact/ContactSection.tsx
-
+// src/features/contact/ContactSection.tsx
 import React from "react";
 import { Box, Typography, Link, Button } from "@mui/material";
 
@@ -14,7 +13,7 @@ export default function ContactSection() {
         boxShadow: 3,
       }}
     >
-      <Typography variant="h4" gutterBottom sx={{ fontWeight: "bold" }}>
+      <Typography variant="h4" gutterBottom fontWeight="bold">
         Контакты
       </Typography>
       <Typography variant="h6" color="text.secondary" gutterBottom>
@@ -26,7 +25,7 @@ export default function ContactSection() {
           <Link
             href="mailto:alexsavone@yandex.ru"
             color="primary"
-            sx={{ textDecoration: "none" }}
+            underline="none"
           >
             alexsavone@yandex.ru
           </Link>
@@ -36,7 +35,7 @@ export default function ContactSection() {
           <Link
             href="https://t.me/alex_sav_one"
             color="primary"
-            sx={{ textDecoration: "none" }}
+            underline="none"
           >
             @alex_sav_one
           </Link>
@@ -45,13 +44,13 @@ export default function ContactSection() {
       <Button
         variant="contained"
         color="primary"
+        href="mailto:alexsavone@yandex.ru"
         sx={{
           mt: 4,
           textTransform: "none",
           boxShadow: 2,
           "&:hover": { boxShadow: 6 },
         }}
-        href="mailto:alexsavone@yandex.ru"
       >
         Написать мне
       </Button>

@@ -1,7 +1,7 @@
 // src/pages/Projects.tsx
 
-import ProjectsSection from '../components/ProjectsSection/ProjectsSection'
+import ProjectsSection from "../features/projects/ProjectsSection";
 
 export default function Projects() {
-  return <ProjectsSection />
+  return <ProjectsSection />;
 }

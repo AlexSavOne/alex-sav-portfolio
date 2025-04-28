@@ -1,7 +1,6 @@
 // src/pages/About.tsx
-
-import AboutSection from '../components/AboutSection/AboutSection'
+import AboutSection from "../features/about/AboutSection";
 
 export default function About() {
-  return <AboutSection />
+  return <AboutSection />;
 }

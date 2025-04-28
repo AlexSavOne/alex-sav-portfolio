@@ -1,6 +1,5 @@
 // src/pages/Home.tsx
-
-import HeroSection from "../components/HeroSection/HeroSection";
+import HeroSection from "../features/hero/HeroSection";
 
 export default function Home() {
   return (
