@@ -10,8 +10,8 @@ import {
   Link,
   Skeleton,
 } from "@mui/material";
-import { projects } from "./data";
-import { Project } from "./project.types";
+import { projects } from "../../constants/projects.data";
+import { Project } from "../../types/project.types";
 
 export default function ProjectsSection() {
   const [loaded, setLoaded] = useState<Record<string, boolean>>({});
@@ -23,7 +23,7 @@ export default function ProjectsSection() {
       </Typography>
       <Grid container spacing={4}>
         {projects.map((project: Project) => (
-          <Grid item key={project.id} xs={12} sm={6} md={4}>
+          <Grid key={project.id} xs={12} sm={6} md={4}>
             <Card
               sx={{
                 transition: "transform 0.2s ease, box-shadow 0.2s ease",

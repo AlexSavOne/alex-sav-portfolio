@@ -1,5 +1,5 @@
-// src/features/projects/data.ts
-import { Project } from "./project.types";
+// src\constants\projects.data.ts
+import { Project } from "../types/project.types";
 
 export const projects: Project[] = [
   {

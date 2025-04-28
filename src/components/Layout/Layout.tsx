@@ -1,4 +1,4 @@
-// src/layout/Layout.tsx
+// src/components/Layout/Layout.tsx
 import React, { useContext } from "react";
 import {
   AppBar,
@@ -13,7 +13,7 @@ import {
 import { NavLink, Outlet } from "react-router-dom";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
-import { ColorModeContext } from "../styles/theme";
+import { ColorModeContext } from "../../styles/theme";
 
 const navItems = [
   { label: "Home", path: "/" },
