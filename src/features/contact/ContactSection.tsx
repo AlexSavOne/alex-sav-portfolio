@@ -1,10 +1,11 @@
 // src/features/contact/ContactSection.tsx
 import React from "react";
-import { Box, Typography, Grid, Paper, Button, Stack } from "@mui/material";
+import { Box, Typography, Grid, Paper, Button, Stack, Alert } from "@mui/material";
 import { motion } from "framer-motion";
 import EmailIcon from "@mui/icons-material/Email";
 import TelegramIcon from '@mui/icons-material/Telegram';
 import GitHubIcon from "@mui/icons-material/GitHub";
+import ConstructionIcon from '@mui/icons-material/Construction';
 
 export default function ContactSection() {
   const mailtoLink = `mailto:AlexSavOne@yandex.ru?subject=Сообщение с портфолио&body=Здравствуйте!%0A%0AЯ хотел(а) бы связаться с вами.%0A%0AС уважением,`;
@@ -52,8 +53,15 @@ export default function ContactSection() {
               Напишите мне
             </Typography>
             <Stack spacing={{ xs: 2, sm: 2.5 }}>
+              <Alert 
+                severity="info" 
+                icon={<ConstructionIcon />}
+                sx={{ mb: 2 }}
+              >
+                Функционал отправки сообщений находится в разработке. Пожалуйста, используйте прямые контакты справа.
+              </Alert>
               <Typography variant="body1" color="text.secondary" sx={{ mb: 2 }}>
-                Вы можете написать мне на почту, используя кнопку ниже. Я постараюсь ответить вам как можно скорее.
+                В ближайшее время здесь появится форма для отправки сообщений. А пока вы можете связаться со мной через контакты справа.
               </Typography>
               <Button
                 variant="contained"
