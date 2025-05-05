@@ -16,7 +16,7 @@ export default function ContactSection() {
         Контакты
       </Typography>
       <Typography variant="h6" color="text.secondary" gutterBottom>
-        Вы можете связаться со мной через следующие каналы:
+        Вы можете связаться со мной через:
       </Typography>
       <Box sx={{ mt: 2 }}>
         <Typography variant="body1" color="text.secondary" paragraph>
