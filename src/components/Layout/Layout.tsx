@@ -9,7 +9,7 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
-import { Outlet, useLocation } from "react-router-dom";
+import { Outlet, useLocation, Link as RouterLink } from "react-router-dom";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
 import { ColorModeContext } from "../../styles/theme";
@@ -17,10 +17,10 @@ import { NavItem } from "../Navigation/NavItem";
 import { NavItem as NavItemType } from "../../types/navigation.types";
 
 const navItems: NavItemType[] = [
-  { label: "Home", path: "/" },
-  { label: "About", path: "/about" },
-  { label: "Projects", path: "/projects" },
-  { label: "Contact", path: "/contact" },
+  { label: "Главная", path: "/" },
+  { label: "Обо мне", path: "/about" },
+  { label: "Проекты", path: "/projects" },
+  { label: "Контакты", path: "/contact" },
 ];
 
 export default function Layout() {
@@ -50,20 +50,46 @@ export default function Layout() {
     >
       <AppBar position="sticky">
         <Toolbar>
-          <Typography variant="h6" sx={{ flexGrow: 1 }}>
+          <Typography
+            variant="h6"
+            noWrap
+            component={RouterLink}
+            to="/"
+            sx={{
+              fontFamily: 'monospace',
+              fontWeight: 700,
+              letterSpacing: '.3rem',
+              color: 'inherit',
+              textDecoration: 'none',
+              '&:hover': {
+                color: 'primary.main',
+              },
+            }}
+          >
             alex-sav-portfolio
           </Typography>
-          <IconButton
-            onClick={colorMode.toggleColorMode}
-            aria-label="Переключить тему"
-          >
-            {theme.palette.mode === "dark" ? (
-              <Brightness7Icon />
-            ) : (
-              <Brightness4Icon />
-            )}
-          </IconButton>
-          {navLinks}
+
+          <Box sx={{ 
+            position: 'absolute',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            display: 'flex', 
+            alignItems: 'center',
+            gap: 2,
+          }}>
+            {navLinks}
+            <IconButton
+              onClick={colorMode.toggleColorMode}
+              aria-label="Переключить тему"
+              sx={{ ml: 1 }}
+            >
+              {theme.palette.mode === "dark" ? (
+                <Brightness7Icon />
+              ) : (
+                <Brightness4Icon />
+              )}
+            </IconButton>
+          </Box>
         </Toolbar>
       </AppBar>
       <Box 
