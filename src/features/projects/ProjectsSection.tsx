@@ -11,6 +11,8 @@ import {
   Box,
   Chip,
   Stack,
+  CardActions,
+  Button,
 } from "@mui/material";
 import { projects } from "../../constants/projects.data";
 import { Project } from "../../types/project.types";
@@ -18,6 +20,7 @@ import { useImageCache } from "../../hooks/useImageCache";
 import ProjectModal from "../../components/ProjectModal/ProjectModal";
 import { motion } from "framer-motion";
 import GitHubIcon from '@mui/icons-material/GitHub';
+import LaunchIcon from '@mui/icons-material/Launch';
 import {
   cardStyles,
   cardMediaStyles,
@@ -81,143 +84,113 @@ export default function ProjectsSection() {
   };
 
   return (
-    <Box sx={{ width: "100%" }}>
+    <Box>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
       <Typography
-        variant="h2"
+          variant="h3"
+          component="h2"
         gutterBottom
-        align="center"
         sx={{ 
-          mb: { xs: 4, sm: 6 },
-          fontSize: { xs: "2rem", sm: "2.5rem", md: "3rem" },
-          fontWeight: 700,
+            fontSize: { xs: '1.75rem', sm: '2rem', md: '2.5rem' },
+            mb: { xs: 2, sm: 3 },
+            textAlign: 'center',
         }}
       >
-        Интересные проекты
+          Мои проекты
       </Typography>
-      <Grid 
-        container 
-        spacing={{ xs: 3, sm: 4, md: 5 }}
-        sx={{ 
-          justifyContent: "center",
-          "& > *": {
-            minWidth: { xs: "100%", sm: "calc(50% - 24px)", md: "calc(33.33% - 32px)" },
-            maxWidth: { xs: "100%", sm: "calc(50% - 24px)", md: "calc(33.33% - 32px)" },
-          }
-        }}
-      >
-        {projects.map((project: Project, index: number) => (
-          <Grid key={project.id} item>
+      </motion.div>
+
+      <Grid container spacing={{ xs: 2, sm: 3, md: 4 }}>
+        {projects.map((project, index) => (
+          <Grid item xs={12} sm={6} md={4} key={index}>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              <Card 
+              <Card
                 sx={{
-                  ...cardStyles,
-                  cursor: 'pointer',
-                  position: 'relative',
-                  height: '500px',
+                  height: '100%',
                   display: 'flex',
                   flexDirection: 'column',
-                  '&::after': {
-                    content: '""',
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    bottom: 0,
-                    borderRadius: 'inherit',
-                    boxShadow: '0 0 0 0 rgba(0,0,0,0)',
-                    transition: 'box-shadow 0.3s ease-in-out',
+                  borderRadius: 2,
+                  transition: 'transform 0.2s ease-in-out',
+                  '&:hover': {
+                    transform: 'translateY(-4px)',
                   },
-                  '&:hover::after': {
-                    boxShadow: '0 0 0 4px rgba(0,0,0,0.1)',
-                  },
+                  cursor: 'pointer',
                 }}
                 onClick={() => handleCardClick(project)}
               >
-                <ProjectImage 
-                  imageUrl={project.image} 
+                <CardMedia
+                  component="img"
+                  height="200"
+                  image={project.image}
                   alt={project.title}
+                  sx={{
+                    objectFit: 'cover',
+                  }}
                 />
-                <CardContent sx={{
-                  ...cardContentStyles,
-                  flex: 1,
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'space-between',
-                  p: 2,
-                  height: '100%',
-                  '& > *': {
-                    width: '100%',
-                  }
-                }}>
-                  <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
-                    <Typography sx={{
-                      ...cardTitleStyles,
-                      mb: 1,
-                      fontSize: '1.25rem',
-                      lineHeight: 1.4,
-                    }}>
-                      {project.title}
-                    </Typography>
-                    <Typography sx={{
-                      ...cardDescriptionStyles,
-                      overflow: 'hidden',
-                      display: '-webkit-box',
-                      WebkitLineClamp: 3,
-                      WebkitBoxOrient: 'vertical',
-                      fontSize: '0.875rem',
-                      lineHeight: 1.5,
+                <CardContent sx={{ flexGrow: 1, p: 3 }}>
+                  <Typography
+                    gutterBottom
+                    variant="h5"
+                    component="h3"
+                    sx={{ 
+                      fontSize: { xs: '1.25rem', sm: '1.5rem' },
                       mb: 2,
-                    }}>
-                      {project.description}
-                    </Typography>
-                    <Stack 
-                      direction="row" 
-                      spacing={1} 
-                      sx={{ 
-                        flexWrap: 'wrap',
-                        gap: 1,
-                      }}
-                    >
-                      {getProjectTechnologies(project.id).map((tech) => (
-                        <Chip 
-                          key={tech.label}
-                          label={tech.label} 
-                          size="small"
-                          color={tech.color as any}
-                          sx={{ 
-                            color: 'white',
-                            '&:hover': {
-                              opacity: 0.8,
-                            },
-                          }}
-                        />
-                      ))}
-                    </Stack>
-                  </Box>
-                  <Link
+                    }}
+                  >
+                    {project.title}
+                  </Typography>
+                  <Typography
+                    variant="body2"
+                    color="text.secondary"
+                    sx={{
+                      fontSize: { xs: '0.875rem', sm: '1rem' },
+                      mb: 2,
+                    }}
+                  >
+                    {project.description}
+                  </Typography>
+                  <Stack
+                    direction="row"
+                    spacing={1}
+                    flexWrap="wrap"
+                    useFlexGap
+                    sx={{ gap: 1 }}
+                  >
+                    {getProjectTechnologies(project.id).map((tech) => (
+                      <Chip
+                        key={tech.label}
+                        label={tech.label}
+                        size="small"
+                        color={tech.color as any}
+                        sx={{
+                          fontSize: { xs: '0.75rem', sm: '0.875rem' },
+                        }}
+                      />
+                    ))}
+                  </Stack>
+                </CardContent>
+                <CardActions sx={{ p: 3, pt: 0 }}>
+                  <Button
+                    size="small"
+                    startIcon={<GitHubIcon />}
                     href={project.link}
                     target="_blank"
-                    rel="noopener"
-                    underline="hover"
+                    rel="noopener noreferrer"
                     sx={{
-                      ...buttonStyles,
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      gap: 1,
-                      width: '100%',
-                      mt: 'auto',
+                      fontSize: { xs: '0.875rem', sm: '1rem' },
                     }}
-                    onClick={(e) => e.stopPropagation()}
                   >
-                    <GitHubIcon sx={{ fontSize: 20 }} />
-                    Открыть на GitHub
-                  </Link>
-                </CardContent>
+                    Смотреть на GitHub
+                  </Button>
+                </CardActions>
               </Card>
             </motion.div>
           </Grid>
