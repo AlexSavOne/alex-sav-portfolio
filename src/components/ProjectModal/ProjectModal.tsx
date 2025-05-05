@@ -12,8 +12,8 @@ import CloseIcon from '@mui/icons-material/Close';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
-import { Project } from '../types/project.types';
-import { projects } from '../constants/projects.data';
+import { Project } from '../../types/project.types';
+import { projects } from '../../constants/projects.data';
 
 interface ProjectModalProps {
   open: boolean;
