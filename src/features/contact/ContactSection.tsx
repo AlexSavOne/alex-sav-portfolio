@@ -1,56 +1,140 @@
 // src/features/contact/ContactSection.tsx
 import React from "react";
-import { Box, Typography, Link, Button } from "@mui/material";
+import { Box, Typography, Grid, Paper, Button, Stack } from "@mui/material";
+import { motion } from "framer-motion";
+import EmailIcon from "@mui/icons-material/Email";
+import TelegramIcon from '@mui/icons-material/Telegram';
+import GitHubIcon from "@mui/icons-material/GitHub";
 
 export default function ContactSection() {
+  const mailtoLink = `mailto:AlexSavOne@yandex.ru?subject=Сообщение с портфолио&body=Здравствуйте!%0A%0AЯ хотел(а) бы связаться с вами.%0A%0AС уважением,`;
+
   return (
-    <Box
-      sx={{
-        py: 8,
-        textAlign: "center",
-        backgroundColor: "background.default",
-        borderRadius: 2,
-      }}
-    >
-      <Typography variant="h4" gutterBottom fontWeight="bold">
-        Контакты
-      </Typography>
-      <Typography variant="h6" color="text.secondary" gutterBottom>
-        Вы можете связаться со мной через:
-      </Typography>
-      <Box sx={{ mt: 2 }}>
-        <Typography variant="body1" color="text.secondary" paragraph>
-          <strong>Email:</strong>{" "}
-          <Link
-            href="mailto:alexsavone@yandex.ru"
-            color="primary"
-            underline="none"
-          >
-            alexsavone@yandex.ru
-          </Link>
-        </Typography>
-        <Typography variant="body1" color="text.secondary" paragraph>
-          <strong>Telegram:</strong>{" "}
-          <Link
-            href="https://t.me/alex_sav_one"
-            color="primary"
-            underline="none"
-          >
-            @alex_sav_one
-          </Link>
-        </Typography>
-      </Box>
-      <Button
-        variant="contained"
-        color="primary"
-        href="mailto:alexsavone@yandex.ru"
-        sx={{
-          mt: 4,
-          textTransform: "none",
-        }}
+    <Box>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
       >
-        Написать мне
-      </Button>
+        <Typography
+          variant="h3"
+          component="h2"
+          gutterBottom
+          sx={{
+            fontSize: { xs: '1.75rem', sm: '2rem', md: '2.5rem' },
+            mb: { xs: 2, sm: 3 },
+            textAlign: 'center',
+          }}
+        >
+          Связаться со мной
+        </Typography>
+      </motion.div>
+
+      <Grid container spacing={{ xs: 2, sm: 3, md: 4 }}>
+        <Grid item xs={12} md={6}>
+          <Paper
+            elevation={0}
+            sx={{
+              p: { xs: 2, sm: 3, md: 4 },
+              height: '100%',
+              backgroundColor: 'background.paper',
+              borderRadius: 2,
+            }}
+          >
+            <Typography
+              variant="h5"
+              gutterBottom
+              sx={{
+                fontSize: { xs: '1.25rem', sm: '1.5rem', md: '1.75rem' },
+                mb: { xs: 1.5, sm: 2 },
+              }}
+            >
+              Напишите мне
+            </Typography>
+            <Stack spacing={{ xs: 2, sm: 2.5 }}>
+              <Typography variant="body1" color="text.secondary" sx={{ mb: 2 }}>
+                Вы можете написать мне на почту, используя кнопку ниже. Я постараюсь ответить вам как можно скорее.
+              </Typography>
+              <Button
+                variant="contained"
+                color="primary"
+                size="large"
+                startIcon={<EmailIcon />}
+                href={mailtoLink}
+                sx={{
+                  mt: { xs: 1, sm: 2 },
+                  py: { xs: 1, sm: 1.5 },
+                  fontSize: { xs: '1rem', sm: '1.1rem' },
+                }}
+              >
+                Написать на почту
+              </Button>
+            </Stack>
+          </Paper>
+        </Grid>
+
+        <Grid item xs={12} md={6}>
+          <Paper
+            elevation={0}
+            sx={{
+              p: { xs: 2, sm: 3, md: 4 },
+              height: '100%',
+              backgroundColor: 'background.paper',
+              borderRadius: 2,
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+            }}
+          >
+            <Typography
+              variant="h5"
+              gutterBottom
+              sx={{
+                fontSize: { xs: '1.25rem', sm: '1.5rem', md: '1.75rem' },
+                mb: { xs: 1.5, sm: 2 },
+              }}
+            >
+              Контакты
+            </Typography>
+            <Stack spacing={{ xs: 2, sm: 3 }}>
+              <Button
+                startIcon={<EmailIcon />}
+                href={mailtoLink}
+                sx={{
+                  justifyContent: 'flex-start',
+                  fontSize: { xs: '0.9rem', sm: '1rem' },
+                }}
+              >
+                AlexSavOne@yandex.ru
+              </Button>
+              <Button
+                startIcon={<TelegramIcon />}
+                href="https://t.me/alex_sav_one"
+                target="_blank"
+                rel="noopener noreferrer"
+                sx={{
+                  justifyContent: 'flex-start',
+                  fontSize: { xs: '0.9rem', sm: '1rem' },
+                }}
+              >
+                @alex_sav_one
+              </Button>
+              <Button
+                startIcon={<GitHubIcon />}
+                href="https://github.com/your-username"
+                target="_blank"
+                rel="noopener noreferrer"
+                sx={{
+                  justifyContent: 'flex-start',
+                  fontSize: { xs: '0.9rem', sm: '1rem' },
+                }}
+              >
+                GitHub
+              </Button>
+            </Stack>
+          </Paper>
+        </Grid>
+      </Grid>
     </Box>
   );
 }
