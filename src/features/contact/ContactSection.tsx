@@ -129,7 +129,7 @@ export default function ContactSection() {
               </Button>
               <Button
                 startIcon={<GitHubIcon />}
-                href="https://github.com/your-username"
+                href="https://github.com/AlexSavOne"
                 target="_blank"
                 rel="noopener noreferrer"
                 sx={{
