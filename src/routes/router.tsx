@@ -47,6 +47,8 @@ const router = createBrowserRouter([
       },
     ],
   },
-]);
+], {
+  basename: '/alex-sav-portfolio'
+});
 
 export default router;

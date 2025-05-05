@@ -18,7 +18,7 @@ export default function Home() {
       <Container sx={containerStyles}>
         <HeroSection
           title="Привет, я Александр 👋"
-          subtitle="Frontend-разработчик. Создаю красивые и функциональные веб-интерфейсы."
+          subtitle="Frontend-разработчик"
           buttonText="Посмотреть проекты"
           buttonLink="/projects"
         />
