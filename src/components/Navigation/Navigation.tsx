@@ -8,31 +8,31 @@ const Navigation = () => {
   return (
     <nav className="navigation">
       <div className="nav-container">
-        <Link to="/alex-sav-portfolio/" className="logo">
+        <Link to="/" className="logo">
           Alex Sav
         </Link>
         <div className="nav-links">
           <Link
-            to="/alex-sav-portfolio/"
-            className={location.pathname === "/alex-sav-portfolio/" ? "active" : ""}
+            to="/"
+            className={location.pathname === "/" ? "active" : ""}
           >
             Главная
           </Link>
           <Link
-            to="/alex-sav-portfolio/about"
-            className={location.pathname === "/alex-sav-portfolio/about" ? "active" : ""}
+            to="/about"
+            className={location.pathname === "/about" ? "active" : ""}
           >
             Обо мне
           </Link>
           <Link
-            to="/alex-sav-portfolio/projects"
-            className={location.pathname === "/alex-sav-portfolio/projects" ? "active" : ""}
+            to="/projects"
+            className={location.pathname === "/projects" ? "active" : ""}
           >
             Проекты
           </Link>
           <Link
-            to="/alex-sav-portfolio/contact"
-            className={location.pathname === "/alex-sav-portfolio/contact" ? "active" : ""}
+            to="/contact"
+            className={location.pathname === "/contact" ? "active" : ""}
           >
             Контакты
           </Link>
@@ -43,3 +43,4 @@ const Navigation = () => {
 };
 
 export default Navigation; 
+ 

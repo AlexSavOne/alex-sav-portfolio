@@ -140,11 +140,11 @@ export default function ProjectsSection() {
                     gutterBottom
                     variant="h5"
                     component="h3"
-                    sx={{ 
+        sx={{ 
                       fontSize: { xs: '1.25rem', sm: '1.5rem' },
                       mb: 2,
-                    }}
-                  >
+        }}
+      >
                     {project.title}
                   </Typography>
                   <Typography
@@ -181,17 +181,17 @@ export default function ProjectsSection() {
                   <Button
                     size="small"
                     startIcon={<GitHubIcon />}
-                    href={project.link}
-                    target="_blank"
+                  href={project.link}
+                  target="_blank"
                     rel="noopener noreferrer"
                     sx={{
                       fontSize: { xs: '0.875rem', sm: '1rem' },
                     }}
-                  >
-                    Смотреть на GitHub
+                >
+                  Смотреть на GitHub
                   </Button>
                 </CardActions>
-              </Card>
+            </Card>
             </motion.div>
           </Grid>
         ))}
