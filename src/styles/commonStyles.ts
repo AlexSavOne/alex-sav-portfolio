@@ -1,3 +1,5 @@
+// src\styles\commonStyles.ts
+
 import { SxProps, Theme } from "@mui/material";
 
 export const containerStyles: SxProps<Theme> = {
