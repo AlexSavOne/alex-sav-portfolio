@@ -5,6 +5,7 @@ import { ThemeProvider, CssBaseline } from "@mui/material";
 import { RouterProvider } from "react-router-dom";
 import router from "./routes/router";
 import theme, { ColorModeContext } from "./styles/theme";
+import NeonCursor from "./components/NeonCursor/NeonCursor"; // ← импорт
 
 const AppEntry = () => {
   const [mode, setMode] = useState<"light" | "dark">(
@@ -30,6 +31,9 @@ const AppEntry = () => {
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={muiTheme}>
         <CssBaseline />
+        {/* Неоновый курсор поверх всего UI */}
+        <NeonCursor />
+        {/* Сам роутер с вашими страницами */}
         <RouterProvider router={router} />
       </ThemeProvider>
     </ColorModeContext.Provider>
