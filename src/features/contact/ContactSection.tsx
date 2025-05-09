@@ -1,14 +1,34 @@
 // src/features/contact/ContactSection.tsx
-import React from "react";
-import { Box, Typography, Grid, Paper, Button, Stack, Alert } from "@mui/material";
+import React, { useState } from "react";
+import {
+  Box,
+  Typography,
+  Grid,
+  Paper,
+  Button,
+  Stack,
+  TextField,
+} from "@mui/material";
 import { motion } from "framer-motion";
 import EmailIcon from "@mui/icons-material/Email";
-import TelegramIcon from '@mui/icons-material/Telegram';
+import TelegramIcon from "@mui/icons-material/Telegram";
 import GitHubIcon from "@mui/icons-material/GitHub";
-import ConstructionIcon from '@mui/icons-material/Construction';
 
 export default function ContactSection() {
-  const mailtoLink = `mailto:AlexSavOne@yandex.ru?subject=Сообщение с портфолио&body=Здравствуйте!%0A%0AЯ хотел(а) бы связаться с вами.%0A%0AС уважением,`;
+  const [form, setForm] = useState({ name: "", email: "", message: "" });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const subject = encodeURIComponent(`Сообщение от ${form.name}`);
+    const body = encodeURIComponent(
+      `Имя: ${form.name}\nEmail: ${form.email}\n\n${form.message}`
+    );
+    window.location.href = `mailto:AlexSavOne@yandex.ru?subject=${subject}&body=${body}`;
+  };
 
   return (
     <Box>
@@ -22,9 +42,9 @@ export default function ContactSection() {
           component="h2"
           gutterBottom
           sx={{
-            fontSize: { xs: '1.75rem', sm: '2rem', md: '2.5rem' },
+            fontSize: { xs: "1.75rem", sm: "2rem", md: "2.5rem" },
             mb: { xs: 2, sm: 3 },
-            textAlign: 'center',
+            textAlign: "center",
           }}
         >
           Связаться со мной
@@ -37,8 +57,8 @@ export default function ContactSection() {
             elevation={0}
             sx={{
               p: { xs: 2, sm: 3, md: 4 },
-              height: '100%',
-              backgroundColor: 'background.paper',
+              height: "100%",
+              backgroundColor: "background.paper",
               borderRadius: 2,
             }}
           >
@@ -46,38 +66,59 @@ export default function ContactSection() {
               variant="h5"
               gutterBottom
               sx={{
-                fontSize: { xs: '1.25rem', sm: '1.5rem', md: '1.75rem' },
+                fontSize: { xs: "1.25rem", sm: "1.5rem", md: "1.75rem" },
                 mb: { xs: 1.5, sm: 2 },
               }}
             >
               Напишите мне
             </Typography>
-            <Stack spacing={{ xs: 2, sm: 2.5 }}>
-              <Alert 
-                severity="info" 
-                icon={<ConstructionIcon />}
-                sx={{ mb: 2 }}
-              >
-                Функционал отправки сообщений находится в разработке. Пожалуйста, используйте прямые контакты.
-              </Alert>
-              <Typography variant="body1" color="text.secondary" sx={{ mb: 2 }}>
-                В ближайшее время здесь появится форма для отправки сообщений.
-              </Typography>
-              <Button
-                variant="contained"
-                color="primary"
-                size="large"
-                startIcon={<EmailIcon />}
-                href={mailtoLink}
-                sx={{
-                  mt: { xs: 1, sm: 2 },
-                  py: { xs: 1, sm: 1.5 },
-                  fontSize: { xs: '1rem', sm: '1.1rem' },
-                }}
-              >
-                Написать на почту
-              </Button>
-            </Stack>
+
+            <Box component="form" onSubmit={handleSubmit} noValidate>
+              <Stack spacing={2}>
+                <TextField
+                  label="Имя"
+                  name="name"
+                  value={form.name}
+                  onChange={handleChange}
+                  required
+                  fullWidth
+                />
+                <TextField
+                  label="Email"
+                  name="email"
+                  type="email"
+                  value={form.email}
+                  onChange={handleChange}
+                  required
+                  fullWidth
+                />
+                <TextField
+                  label="Сообщение"
+                  name="message"
+                  value={form.message}
+                  onChange={handleChange}
+                  required
+                  multiline
+                  rows={4}
+                  fullWidth
+                />
+
+                <Button
+                  variant="contained"
+                  color="primary"
+                  size="large"
+                  startIcon={<EmailIcon />}
+                  type="submit"
+                  sx={{
+                    mt: { xs: 1, sm: 2 },
+                    py: { xs: 1, sm: 1.5 },
+                    textTransform: "none",
+                  }}
+                >
+                  Отправить через почту
+                </Button>
+              </Stack>
+            </Box>
           </Paper>
         </Grid>
 
@@ -86,19 +127,19 @@ export default function ContactSection() {
             elevation={0}
             sx={{
               p: { xs: 2, sm: 3, md: 4 },
-              height: '100%',
-              backgroundColor: 'background.paper',
+              height: "100%",
+              backgroundColor: "background.paper",
               borderRadius: 2,
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'center',
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
             }}
           >
             <Typography
               variant="h5"
               gutterBottom
               sx={{
-                fontSize: { xs: '1.25rem', sm: '1.5rem', md: '1.75rem' },
+                fontSize: { xs: "1.25rem", sm: "1.5rem", md: "1.75rem" },
                 mb: { xs: 1.5, sm: 2 },
               }}
             >
@@ -107,10 +148,11 @@ export default function ContactSection() {
             <Stack spacing={{ xs: 2, sm: 3 }}>
               <Button
                 startIcon={<EmailIcon />}
-                href={mailtoLink}
+                href="mailto:AlexSavOne@yandex.ru"
                 sx={{
-                  justifyContent: 'flex-start',
-                  fontSize: { xs: '0.9rem', sm: '1rem' },
+                  justifyContent: "flex-start",
+                  fontSize: { xs: "0.9rem", sm: "1rem" },
+                  textTransform: "none",
                 }}
               >
                 AlexSavOne@yandex.ru
@@ -121,8 +163,9 @@ export default function ContactSection() {
                 target="_blank"
                 rel="noopener noreferrer"
                 sx={{
-                  justifyContent: 'flex-start',
-                  fontSize: { xs: '0.9rem', sm: '1rem' },
+                  justifyContent: "flex-start",
+                  fontSize: { xs: "0.9rem", sm: "1rem" },
+                  textTransform: "none",
                 }}
               >
                 @alex_sav_one
@@ -133,8 +176,9 @@ export default function ContactSection() {
                 target="_blank"
                 rel="noopener noreferrer"
                 sx={{
-                  justifyContent: 'flex-start',
-                  fontSize: { xs: '0.9rem', sm: '1rem' },
+                  justifyContent: "flex-start",
+                  fontSize: { xs: "0.9rem", sm: "1rem" },
+                  textTransform: "none",
                 }}
               >
                 GitHub
