@@ -6,7 +6,6 @@ import {
   Card,
   CardContent,
   CardMedia,
-  Link,
   Skeleton,
   Box,
   Chip,
@@ -19,44 +18,8 @@ import { Project } from "../../types/project.types";
 import { useImageCache } from "../../hooks/useImageCache";
 import ProjectModal from "../../components/ProjectModal/ProjectModal";
 import { motion } from "framer-motion";
-import GitHubIcon from '@mui/icons-material/GitHub';
-import LaunchIcon from '@mui/icons-material/Launch';
-import {
-  cardStyles,
-  cardMediaStyles,
-  cardContentStyles,
-  cardTitleStyles,
-  cardDescriptionStyles,
-  buttonStyles,
-} from "../../styles/commonStyles";
-
-const getProjectTechnologies = (projectId: string) => {
-  switch (projectId) {
-    case "stellar-burger":
-      return [
-        { label: "React", color: "primary" },
-        { label: "TypeScript", color: "secondary" },
-        { label: "Jest", color: "success" },
-        { label: "Cypress", color: "info" },
-      ];
-    case "gendiff":
-      return [
-        { label: "JavaScript", color: "warning" },
-        { label: "Node.js", color: "success" },
-        { label: "Jest", color: "success" },
-        { label: "ESLint", color: "error" },
-      ];
-    case "mesto":
-      return [
-        { label: "HTML", color: "primary" },
-        { label: "CSS", color: "secondary" },
-        { label: "JavaScript", color: "warning" },
-        { label: "Webpack", color: "info" },
-      ];
-    default:
-      return [];
-  }
-};
+import GitHubIcon from "@mui/icons-material/GitHub";
+import { cardMediaStyles } from "../../styles/commonStyles";
 
 export default function ProjectsSection() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
@@ -71,15 +34,16 @@ export default function ProjectsSection() {
 
   const handleNextProject = () => {
     if (!selectedProject) return;
-    const currentIndex = projects.findIndex(p => p.id === selectedProject.id);
+    const currentIndex = projects.findIndex((p) => p.id === selectedProject.id);
     const nextIndex = (currentIndex + 1) % projects.length;
     setSelectedProject(projects[nextIndex]);
   };
 
   const handlePreviousProject = () => {
     if (!selectedProject) return;
-    const currentIndex = projects.findIndex(p => p.id === selectedProject.id);
-    const previousIndex = (currentIndex - 1 + projects.length) % projects.length;
+    const currentIndex = projects.findIndex((p) => p.id === selectedProject.id);
+    const previousIndex =
+      (currentIndex - 1 + projects.length) % projects.length;
     setSelectedProject(projects[previousIndex]);
   };
 
@@ -90,18 +54,18 @@ export default function ProjectsSection() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-      <Typography
+        <Typography
           variant="h3"
           component="h2"
-        gutterBottom
-        sx={{ 
-            fontSize: { xs: '1.75rem', sm: '2rem', md: '2.5rem' },
+          gutterBottom
+          sx={{
+            fontSize: { xs: "1.75rem", sm: "2rem", md: "2.5rem" },
             mb: { xs: 2, sm: 3 },
-            textAlign: 'center',
-        }}
-      >
+            textAlign: "center",
+          }}
+        >
           Мои проекты
-      </Typography>
+        </Typography>
       </motion.div>
 
       <Grid container spacing={{ xs: 2, sm: 3, md: 4 }}>
@@ -114,25 +78,25 @@ export default function ProjectsSection() {
             >
               <Card
                 sx={{
-                  height: '100%',
-                  display: 'flex',
-                  flexDirection: 'column',
+                  height: "100%",
+                  display: "flex",
+                  flexDirection: "column",
                   borderRadius: 2,
-                  transition: 'transform 0.2s ease-in-out',
-                  '&:hover': {
-                    transform: 'translateY(-4px)',
+                  transition: "transform 0.2s ease-in-out",
+                  "&:hover": {
+                    transform: "translateY(-4px)",
                   },
-                  cursor: 'pointer',
+                  cursor: "pointer",
                 }}
                 onClick={() => handleCardClick(project)}
               >
                 <CardMedia
                   component="img"
-                  height="200"
+                  height="300"
                   image={project.image}
                   alt={project.title}
                   sx={{
-                    objectFit: 'cover',
+                    objectFit: "contain",
                   }}
                 />
                 <CardContent sx={{ flexGrow: 1, p: 3 }}>
@@ -140,18 +104,18 @@ export default function ProjectsSection() {
                     gutterBottom
                     variant="h5"
                     component="h3"
-        sx={{ 
-                      fontSize: { xs: '1.25rem', sm: '1.5rem' },
+                    sx={{
+                      fontSize: { xs: "1.25rem", sm: "1.5rem" },
                       mb: 2,
-        }}
-      >
+                    }}
+                  >
                     {project.title}
                   </Typography>
                   <Typography
                     variant="body2"
                     color="text.secondary"
                     sx={{
-                      fontSize: { xs: '0.875rem', sm: '1rem' },
+                      fontSize: { xs: "0.875rem", sm: "1rem" },
                       mb: 2,
                     }}
                   >
@@ -164,15 +128,13 @@ export default function ProjectsSection() {
                     useFlexGap
                     sx={{ gap: 1 }}
                   >
-                    {getProjectTechnologies(project.id).map((tech) => (
+                    {project.technologies?.map((tech) => (
                       <Chip
                         key={tech.label}
                         label={tech.label}
                         size="small"
                         color={tech.color as any}
-                        sx={{
-                          fontSize: { xs: '0.75rem', sm: '0.875rem' },
-                        }}
+                        sx={{ fontSize: { xs: "0.75rem", sm: "0.875rem" } }}
                       />
                     ))}
                   </Stack>
@@ -181,17 +143,17 @@ export default function ProjectsSection() {
                   <Button
                     size="small"
                     startIcon={<GitHubIcon />}
-                  href={project.link}
-                  target="_blank"
+                    href={project.link}
+                    target="_blank"
                     rel="noopener noreferrer"
                     sx={{
-                      fontSize: { xs: '0.875rem', sm: '1rem' },
+                      fontSize: { xs: "0.875rem", sm: "1rem" },
                     }}
-                >
-                  Смотреть на GitHub
+                  >
+                    Смотреть на GitHub
                   </Button>
                 </CardActions>
-            </Card>
+              </Card>
             </motion.div>
           </Grid>
         ))}
@@ -207,13 +169,7 @@ export default function ProjectsSection() {
   );
 }
 
-function ProjectImage({ 
-  imageUrl, 
-  alt,
-}: { 
-  imageUrl: string; 
-  alt: string;
-}) {
+function ProjectImage({ imageUrl, alt }: { imageUrl: string; alt: string }) {
   const { isLoaded, error } = useImageCache(imageUrl);
 
   if (error) {
