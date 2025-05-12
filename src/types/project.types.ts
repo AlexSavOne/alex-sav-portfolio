@@ -5,4 +5,8 @@ export interface Project {
   description: string;
   image: string;
   link: string;
+  technologies?: {
+    label: string;
+    color: "primary" | "secondary" | "success" | "info" | "warning" | "error";
+  }[];
 }
