@@ -6,6 +6,8 @@ import { RouterProvider } from "react-router-dom";
 import router from "./routes/router";
 import theme, { ColorModeContext } from "./styles/theme";
 import NeonCursor from "./components/NeonCursor/NeonCursor"; // ← импорт
+import './index.css';
+
 
 const AppEntry = () => {
   const [mode, setMode] = useState<"light" | "dark">(

@@ -7,7 +7,7 @@ export const projects: Project[] = [
     title: "FoodZone — доставка еды",
     description:
       "Tailwind CSS, Alpine.js, AOS, Google Fonts. Лендинг сервиса доставки еды с фильтрацией, адаптивным дизайном и анимациями. Разработан в стиле mobile-first.",
-    image: "public/images/Foodzone.png",
+    image: "images/Foodzone.png",
     link: "https://github.com/AlexSavOne/foodzone-landing",
     technologies: [
       { label: "Tailwind CSS", color: "secondary" },
@@ -21,7 +21,7 @@ export const projects: Project[] = [
     title: "Клининг услуги",
     description:
       "HTML5, Tailwind CSS, AOS, Heroicons, Flexbox, Grid, Scroll Snap. Лендинг для клининговой компании с адаптивной версткой, анимациями и формой заявки. Проект для портфолио.",
-    image: "public/images/Cleanpro.png",
+    image: "images/Cleanpro.png",
     link: "https://github.com/AlexSavOne/cleanpro-landing",
     technologies: [
       { label: "HTML5", color: "primary" },
